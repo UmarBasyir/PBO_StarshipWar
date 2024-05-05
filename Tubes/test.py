@@ -94,7 +94,33 @@ class Ufo(Enemy):
 # Kelas Game
 class Game:
     def __init__(self):
-        self.run_game()
+        self.start_screen()
+
+    def start_text(self):
+        font = pygame.font.SysFont('Calibri',50)
+        text = font.render('STARSHIP WAR', True, 'yellow')
+        text_rect = text.get_rect(center=(s_width/2, s_height/2))
+        screen.blit(text, text_rect)
+
+        font = pygame.font.SysFont('Calibri',20)
+        text2 = font.render('PRESS ENTER TO START', True, 'white')
+        text2_rect = text2.get_rect(center=(s_width/2, s_height/2+60))
+        screen.blit(text2, text2_rect)
+    
+    def start_screen(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE: 
+                        pygame.quit()
+                        sys.exit()
+                    if event.key == K_RETURN:
+                        self.run_game
+            pygame.display.update()
 
     def create_background(self):
         for i in range(25):
